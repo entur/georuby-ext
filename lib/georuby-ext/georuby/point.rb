@@ -39,7 +39,8 @@ class GeoRuby::SimpleFeatures::Point
   def spherical_distance_with_srid_support(other)
     to_wgs84.spherical_distance_without_srid_support(other.to_wgs84)
   end
-  alias_method_chain :spherical_distance, :srid_support
+  alias_method :spherical_distance_without_srid_support, :spherical_distance
+  alias_method :spherical_distance, :spherical_distance_with_srid_support
 
   def endpoint(heading, distance, options={})
     Endpointer.new(self, heading, distance, options).arrival
